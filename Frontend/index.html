@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smart Companion - AI-powered task management for neurodivergent individuals">
+  <title>Smart Companion - Your Neurodiversity Partner</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/premium-enhanced.css" />
+  
+  <!-- Preload fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Toast Notifications Container -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay hidden">
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Processing...</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACCESSIBILITY TOOLBAR -->
+<!-- ============================================ -->
+<div class="accessibility-toolbar">
+  <button onclick="toggleDark()" class="acc-btn" title="Toggle dark mode" aria-label="Toggle dark mode">
+    <span id="darkIcon">🌙</span>
+  </button>
+  
+  <button onclick="toggleFont()" class="acc-btn" title="Dyslexia-friendly font" aria-label="Toggle dyslexia-friendly font">
+    <span>Aa</span>
+  </button>
+  
+  <button onclick="toggleFontSize()" class="acc-btn" title="Increase text size" aria-label="Toggle large text">
+    <span>A+</span>
+  </button>
+  
+  <button onclick="toggleHighContrast()" class="acc-btn" title="High contrast" aria-label="Toggle high contrast mode">
+    <span>◐</span>
+  </button>
+  
+  <button onclick="toggleFocusMode()" class="acc-btn" title="Focus mode" aria-label="Toggle focus mode">
+    <span id="focusIcon">🎯</span>
+  </button>
+</div>
+
+<!-- ============================================ -->
+<!-- MAIN HEADER -->
+<!-- ============================================ -->
+<header class="main-header">
+  <div class="header-left">
+    <div class="logo">
+      <div class="logo-icon">🧠</div>
+      <div class="logo-text">
+        <h1>Smart Companion</h1>
+        <p class="tagline">Your executive function partner</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="header-center">
+    <!-- Energy Level Indicator -->
+    <div class="energy-widget">
+      <label>Energy Level</label>
+      <div class="energy-dots">
+        <div class="dot" data-level="1" onclick="setEnergy(1)" role="button" tabindex="0" aria-label="Set energy level to 1"></div>
+        <div class="dot" data-level="2" onclick="setEnergy(2)" role="button" tabindex="0" aria-label="Set energy level to 2"></div>
+        <div class="dot active" data-level="3" onclick="setEnergy(3)" role="button" tabindex="0" aria-label="Set energy level to 3"></div>
+        <div class="dot" data-level="4" onclick="setEnergy(4)" role="button" tabindex="0" aria-label="Set energy level to 4"></div>
+        <div class="dot" data-level="5" onclick="setEnergy(5)" role="button" tabindex="0" aria-label="Set energy level to 5"></div>
+      </div>
+      <span class="energy-label" id="energyLabel">Balanced</span>
+    </div>
+  </div>
+  
+  <div class="header-right">
+    <div class="time-display" id="timeDisplay">2:34 PM</div>
+    <div class="stats-badge" onclick="showStats()" role="button" tabindex="0" aria-label="View statistics">
+      <span class="badge-number" id="todayWins">0</span>
+      <span class="badge-label">today</span>
+    </div>
+    <button onclick="handleLogout()" class="user-btn" aria-label="Logout">
+      <span>👤</span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================ -->
+<!-- NAVIGATION TABS -->
+<!-- ============================================ -->
+<nav class="tab-navigation" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('planner')" data-tab="planner" role="tab" aria-selected="true" aria-controls="planner-tab">
+    <span class="tab-icon">✂️</span>
+    <span class="tab-label">Task Planner</span>
+  </button>
+  
+  <button class="tab-btn" onclick="switchTab('chatbot')" data-tab="chatbot" role="tab" aria-selected="false" aria-controls="chatbot-tab">
+    <span class="tab-icon">💬</span>
+    <span class="tab-label">AI Companion</span>
+  </button>
+  
+  <button class="tab-btn" onclick="switchTab('focus')" data-tab="focus" role="tab" aria-selected="false" aria-controls="focus-tab">
+    <span class="tab-icon">🎯</span>
+    <span class="tab-label">Focus Mode</span>
+  </button>
+</nav>
+
+<!-- ============================================ -->
+<!-- MAIN CONTENT AREA -->
+<!-- ============================================ -->
+<main class="main-content">
+
+  <!-- ========== TAB 1: TASK PLANNER ========== -->
+  <section id="planner-tab" class="content-tab active" role="tabpanel" aria-labelledby="planner-btn">
+    <div class="tab-layout">
+      
+      <!-- Left: Context Panel -->
+      <aside class="context-panel">
+        <div class="encouragement-card">
+          <div class="card-icon">💙</div>
+          <h2>You're not behind</h2>
+          <p>Some days feel heavier than others. You don't need to solve everything today.</p>
+          <p class="hint-text">We'll take this one step at a time.</p>
+        </div>
+        
+        <div class="progress-card">
+          <h3>Your Progress</h3>
+          <div class="stat-item">
+            <span class="stat-icon">✨</span>
+            <div class="stat-info">
+              <span class="stat-value" id="totalMicroWins">0</span>
+              <span class="stat-label">Micro-wins</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🔥</span>
+            <div class="stat-info">
+              <span class="stat-value" id="streakCount">0</span>
+              <span class="stat-label">Day streak</span>
+            </div>
+          </div>
+        </div>
+        
+        <button class="calm-escape-btn" onclick="enterCalmSpace()">
+          <span>🫂</span>
+          <span>I need a moment</span>
+        </button>
+      </aside>
+      
+      <!-- Right: Task Input -->
+      <div class="workspace-panel">
+        <div class="panel-header">
+          <h2>What's on your mind?</h2>
+          <span class="privacy-badge">
+            <span class="lock-icon">🔒</span>
+            <span>Private & Secure</span>
+          </span>
+        </div>
+        
+        <div class="task-input-area">
+          <textarea 
+            id="taskInput" 
+            placeholder="Something I've been avoiding, but want help with…"
+            oninput="detectParalysis()"
+            aria-label="Enter your task"
+          ></textarea>
+          
+          <div class="input-actions">
+            <button class="voice-input-btn" onclick="startVoiceInput()" aria-label="Use voice input">
+              <span class="btn-icon">🎤</span>
+              <span>Speak instead</span>
+            </button>
+            
+            <div class="quick-templates">
+              <button class="template-chip" onclick="fillTemplate('Clean my room')">Clean my room</button>
+              <button class="template-chip" onclick="fillTemplate('Do laundry')">Do laundry</button>
+              <button class="template-chip" onclick="fillTemplate('Study for exam')">Study</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="action-grid">
+          <button class="action-card primary" onclick="breakDownTask()">
+            <div class="action-icon">✂️</div>
+            <div class="action-content">
+              <h3>Break into steps</h3>
+              <p>I'll make it tiny and manageable</p>
+            </div>
+          </button>
+          
+          <button class="action-card" onclick="showTimerEstimate()">
+            <div class="action-icon">⏱️</div>
+            <div class="action-content">
+              <h3>Time estimate</h3>
+              <p>Get realistic duration</p>
+            </div>
+          </button>
+          
+          <button class="action-card" onclick="showExamples()">
+            <div class="action-icon">📋</div>
+            <div class="action-content">
+              <h3>Show examples</h3>
+              <p>See how others broke this down</p>
+            </div>
+          </button>
+          
+          <button class="action-card" onclick="pauseAndReflect()">
+            <div class="action-icon">🫂</div>
+            <div class="action-content">
+              <h3>Just sit with it</h3>
+              <p>No action needed now</p>
+            </div>
+          </button>
+        </div>
+        
+        <!-- Response Area -->
+        <div id="plannerResponse" class="response-area" role="region" aria-live="polite"></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ========== TAB 2: AI CHATBOT COMPANION ========== -->
+  <section id="chatbot-tab" class="content-tab" role="tabpanel" aria-labelledby="chatbot-btn">
+    <div class="chatbot-layout">
+      
+      <!-- Chatbot Header -->
+      <div class="chatbot-header">
+        <div class="companion-avatar">
+          <div class="avatar-circle">
+            <span class="avatar-emoji">🤗</span>
+          </div>
+          <div class="avatar-info">
+            <h2>AI Companion</h2>
+            <p class="status-indicator">
+              <span class="status-dot"></span>
+              <span>Here to listen</span>
+            </p>
+          </div>
+        </div>
+        
+        <div class="chat-controls">
+          <button class="control-btn" onclick="clearChat()" title="Clear chat" aria-label="Clear chat">
+            <span>🗑️</span>
+          </button>
+          <button class="control-btn" onclick="exportChat()" title="Export conversation" aria-label="Export conversation">
+            <span>💾</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Chat Messages Area -->
+      <div class="chat-messages-container" id="chatBox" role="log" aria-live="polite">
+        <!-- Welcome message -->
+        <div class="message ai-message">
+          <div class="message-avatar">🤗</div>
+          <div class="message-bubble">
+            <p>Hi there. I'm here to listen without judgment.</p>
+            <p>What's on your mind today?</p>
+          </div>
+          <div class="message-time">Just now</div>
+        </div>
+      </div>
+      
+      <!-- Chat Input Area -->
+      <div class="chat-input-container">
+        <div class="quick-prompts">
+          <button class="prompt-chip" onclick="sendQuickPrompt('I feel stuck')">I feel stuck</button>
+          <button class="prompt-chip" onclick="sendQuickPrompt('I need motivation')">I need motivation</button>
+          <button class="prompt-chip" onclick="sendQuickPrompt('I\'m overwhelmed')">I'm overwhelmed</button>
+        </div>
+        
+        <div class="chat-input-wrapper">
+          <textarea 
+            id="chatInput" 
+            placeholder="Share what's on your mind…" 
+            rows="1"
+            onkeypress="handleChatKeypress(event)"
+            aria-label="Type your message"
+          ></textarea>
+          
+          <div class="chat-input-actions">
+            <button class="input-action-btn" onclick="startVoiceChat()" title="Voice input" aria-label="Use voice input">
+              <span>🎤</span>
+            </button>
+            <button class="send-btn" onclick="sendMessage()" aria-label="Send message">
+              <span>Send</span>
+              <span class="send-icon">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ========== TAB 3: FOCUS MODE ========== -->
+  <section id="focus-tab" class="content-tab" role="tabpanel" aria-labelledby="focus-btn">
+    <div class="focus-layout">
+      <div class="focus-container">
+        <div class="focus-header">
+          <h2>Focus Mode</h2>
+          <p>One step at a time. You've got this.</p>
+        </div>
+        
+        <div class="current-step-card">
+          <div class="step-number" id="focusStepNumber">No active task</div>
+          <h3 class="step-text" id="focusStepText">Break down a task in the Task Planner to begin</h3>
+          <div class="step-timer">
+            <span>⏱️</span>
+            <span id="stepTimer">--</span>
+          </div>
+        </div>
+        
+        <div class="focus-actions">
+          <button class="focus-btn secondary" onclick="skipStep()" id="skipStepBtn" disabled>Skip</button>
+          <button class="focus-btn primary" onclick="completeStep()" id="completeStepBtn" disabled>
+            <span>Done</span>
+            <span>✓</span>
+          </button>
+        </div>
+        
+        <div class="focus-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="focusProgressFill" style="width: 0%"></div>
+          </div>
+          <p class="progress-text" id="focusProgressText">No task in progress</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================ -->
+<!-- FLOATING ACTION BUTTON -->
+<!-- ============================================ -->
+<div class="fab-container">
+  <button class="fab main-fab" onclick="toggleFabMenu()" aria-label="Quick actions menu">
+    <span class="fab-icon">+</span>
+  </button>
+  
+  <div class="fab-menu" id="fabMenu" role="menu">
+    <button class="fab secondary-fab" onclick="emergencyCalmDown()" title="Emergency calm" aria-label="Emergency calm down" role="menuitem">
+      <span>🆘</span>
+    </button>
+    <button class="fab secondary-fab" onclick="quickTimer()" title="Quick timer" aria-label="Start quick timer" role="menuitem">
+      <span>⏲️</span>
+    </button>
+    <button class="fab secondary-fab" onclick="startBodyDoubling()" title="Body doubling" aria-label="Start body doubling" role="menuitem">
+      <span>👥</span>
+    </button>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- MODALS -->
+<!-- ============================================ -->
+
+<!-- Calm Space Modal -->
+<div id="calmSpaceModal" class="modal" role="dialog" aria-labelledby="calm-space-title" aria-hidden="true">
+  <div class="modal-overlay" onclick="closeCalmSpace()"></div>
+  <div class="modal-content calm-modal">
+    <h2 id="calm-space-title">Take a deep breath</h2>
+    <p>You're safe here. Nothing is urgent.</p>
+    
+    <div class="breathing-animation">
+      <div class="breath-circle"></div>
+      <p class="breath-instruction" id="breathInstruction">Breathe in...</p>
+    </div>
+    
+    <button class="modal-btn" onclick="closeCalmSpace()">I'm ready to continue</button>
+  </div>
+</div>
+
+<!-- Stats Modal -->
+<div id="statsModal" class="modal" role="dialog" aria-labelledby="stats-title" aria-hidden="true">
+  <div class="modal-overlay" onclick="closeStats()"></div>
+  <div class="modal-content stats-modal">
+    <button class="modal-close" onclick="closeStats()" aria-label="Close">×</button>
+    <h2 id="stats-title">Your Journey</h2>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="modalTotalWins">0</div>
+        <div class="stat-label">Micro-wins</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="modalStreak">0</div>
+        <div class="stat-label">Day streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="modalTasks">0</div>
+        <div class="stat-label">Tasks completed</div>
+      </div>
+    </div>
+    
+    <div class="achievements-section">
+      <h3>Achievements</h3>
+      <div class="achievement-list" id="achievementList">
+        <div class="achievement-badge">🌱 First Step</div>
+        <div class="achievement-badge locked">🔥 3-Day Streak</div>
+        <div class="achievement-badge locked">✨ Task Master</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Body Doubling Modal -->
+<div id="bodyDoublingModal" class="modal" role="dialog" aria-labelledby="body-doubling-title" aria-hidden="true">
+  <div class="modal-overlay" onclick="endBodyDoubling()"></div>
+  <div class="modal-content body-doubling-modal">
+    <h2 id="body-doubling-title">Let's work together</h2>
+    <p>I'll stay with you. You're not alone.</p>
+    
+    <div class="companion-presence">
+      <div class="presence-avatar">🤝</div>
+      <p class="presence-message" id="companionMessage">I'm here. Take your time.</p>
+    </div>
+    
+    <div class="session-timer">
+      <div class="timer-display" id="sessionTime">0:00</div>
+      <p>Working together</p>
+    </div>
+    
+    <button class="modal-btn secondary" onclick="endBodyDoubling()">End session</button>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SCRIPTS -->
+<!-- ============================================ -->
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/planner.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
