@@ -1,4 +1,4 @@
-# 🧠 Smart Companion
+# 🧠 clarity
 
 **AI-Powered Task Management & Emotional Support for Neurodivergent Individuals**
 
@@ -32,7 +32,7 @@
 
 ## 🎯 Overview
 
-**Smart Companion** is a comprehensive web application specifically designed for individuals with ADHD, dyslexia, and executive function challenges. It combines AI-powered task decomposition with empathetic emotional support to help users overcome task paralysis and achieve their goals.
+**clarity** is a comprehensive web application specifically designed for individuals with ADHD, dyslexia, and executive function challenges. It combines AI-powered task decomposition with empathetic emotional support to help users overcome task paralysis and achieve their goals.
 
 ### The Problem We Solve
 
@@ -45,7 +45,7 @@ Many neurodivergent individuals struggle with:
 
 ### Our Solution
 
-Smart Companion provides:
+clarity provides:
 - **AI Task Breakdown** - Converts overwhelming tasks into tiny, manageable micro-steps
 - **Adaptive Learning** - Adjusts difficulty based on user behavior patterns
 - **Empathetic AI Companion** - Non-judgmental emotional support and encouragement
@@ -235,8 +235,8 @@ Smart Companion provides:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/smart-companion.git
-cd smart-companion
+git clone https://github.com/yourusername/clarity.git
+cd clarity
 
 # 2. Create environment file
 cp .env.example .env
@@ -253,8 +253,8 @@ open http://localhost:3000
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/smart-companion.git
-cd smart-companion
+git clone https://github.com/yourusername/clarity.git
+cd clarity
 
 # 2. Setup Backend
 cd backend
@@ -288,8 +288,8 @@ open http://localhost:3000
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/smart-companion.git
-cd smart-companion
+git clone https://github.com/yourusername/clarity.git
+cd clarity
 ```
 
 ### Step 2: Backend Setup
@@ -303,7 +303,7 @@ Create `backend/.env`:
 ```env
 PORT=5000
 NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/smart-companion
+MONGO_URI=mongodb://localhost:27017/clarity
 JWT_SECRET=your-super-secret-jwt-key-minimum-32-characters-long
 AI_BASE_URL=http://localhost:8000
 ```
@@ -426,7 +426,7 @@ docker-compose exec backend sh
 ## 📁 Project Structure
 
 ```
-smart-companion/
+clarity/
 ├── README.md                    # This file
 ├── docker-compose.yml           # Docker orchestration
 ├── .env.example                 # Environment template
@@ -517,7 +517,7 @@ PORT=5000
 NODE_ENV=development
 
 # Database
-MONGO_URI=mongodb://localhost:27017/smart-companion
+MONGO_URI=mongodb://localhost:27017/clarity
 
 # Security
 JWT_SECRET=your-secret-key-minimum-32-characters
@@ -548,12 +548,12 @@ const allowedOrigins = [
 
 **Local:**
 ```env
-MONGO_URI=mongodb://localhost:27017/smart-companion
+MONGO_URI=mongodb://localhost:27017/clarity
 ```
 
 **MongoDB Atlas:**
 ```env
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/smart-companion
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/clarity
 ```
 
 ---
@@ -803,8 +803,8 @@ We welcome contributions! Please follow these steps:
 ### 1. Fork the Repository
 
 ```bash
-git clone https://github.com/yourusername/smart-companion.git
-cd smart-companion
+git clone https://github.com/yourusername/clarity.git
+cd clarity
 git checkout -b feature/your-feature-name
 ```
 
@@ -851,7 +851,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2024 Smart Companion
+Copyright (c) 2024 clarity
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -876,9 +876,9 @@ SOFTWARE.
 
 ## 📞 Contact
 
-- **Project Repository:** https://github.com/yourusername/smart-companion
-- **Issues:** https://github.com/yourusername/smart-companion/issues
-- **Discussions:** https://github.com/yourusername/smart-companion/discussions
+- **Project Repository:** https://github.com/Rajsaha951/clarity
+- **Rajsaha951:** https://github.com/Rajsaha951
+- **parxuram:** https://github.com/parxuram
 
 ---
 
@@ -931,10 +931,10 @@ If this project helped you, please give it a ⭐️!
 ## 🎉 Quick Links
 
 - [📖 Documentation](./docs/)
-- [🐛 Report Bug](https://github.com/yourusername/smart-companion/issues)
-- [💡 Request Feature](https://github.com/yourusername/smart-companion/issues)
-- [💬 Discussions](https://github.com/yourusername/smart-companion/discussions)
-- [🐳 Docker Hub](https://hub.docker.com/r/yourusername/smart-companion)
+- [🐛 Report Bug](https://github.com/yourusername/clarity/issues)
+- [💡 Request Feature](https://github.com/yourusername/clarity/issues)
+- [💬 Discussions](https://github.com/yourusername/clarity/discussions)
+- [🐳 Docker Hub](https://hub.docker.com/r/yourusername/clarity)
 
 ---
 
@@ -942,6 +942,6 @@ If this project helped you, please give it a ⭐️!
 
 **Made with 💙 for neurodivergent individuals**
 
-[⬆ Back to Top](#-smart-companion)
+[⬆ Back to Top](#-clarity)
 
 </div>
