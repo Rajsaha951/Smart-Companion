@@ -24,7 +24,7 @@
 /* ========== ACCESSIBILITY TOOLBAR ========== */
 .accessibility-toolbar {
   position: fixed;
-  top: 1rem;
+  top: 20rem;
   right: 1rem;
   display: flex;
   gap: 0.5rem;
