@@ -2,33 +2,6 @@
 
 **AI-Powered Task Management & Emotional Support for Neurodivergent Individuals**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
-
----
-
-## 📖 Table of Contents
-
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Technology Stack](#technology-stack)
-- [Architecture](#architecture)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Detailed Setup](#detailed-setup)
-- [Docker Deployment](#docker-deployment)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [API Documentation](#api-documentation)
-- [Screenshots](#screenshots)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
----
 
 ## 🎯 Overview
 
@@ -55,23 +28,23 @@ clarity provides:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-### 🎯 Task Planner
+###  Task Planner
 - **AI-Powered Decomposition** - Breaks tasks into micro-steps using Google Gemini
 - **Adaptive Complexity** - Automatically adjusts step size based on user metrics
 - **Progress Tracking** - Visual indicators and completion celebrations
 - **PII Sanitization** - Removes personal information before AI processing
 - **Session Management** - Tracks and saves task progress
 
-### 💬 AI Companion
+###  AI Companion
 - **Empathetic Chat** - Non-judgmental, supportive conversation
 - **State-Aware Responses** - Adapts based on user's emotional/cognitive state
 - **Crisis Support** - Emergency calm space with breathing exercises
 - **Chat History** - Export and save conversations
 - **Voice Input** - Speak your thoughts instead of typing
 
-### ♿ Accessibility Features
+### Accessibility Features
 - **Dark Mode** - Full dark theme with proper contrast
 - **Dyslexia-Friendly Font** - OpenDyslexic and Lexend fonts
 - **Large Text Mode** - Scalable text sizes (up to 20px)
@@ -80,7 +53,7 @@ clarity provides:
 - **Keyboard Navigation** - Full keyboard accessibility
 - **Screen Reader Support** - ARIA labels throughout
 
-### 🔒 Security & Privacy
+### Security & Privacy
 - **JWT Authentication** - Secure token-based auth with 7-day expiration
 - **Password Encryption** - bcrypt with 10 rounds
 - **PII Sanitization** - Automatic removal of sensitive data
@@ -88,14 +61,14 @@ clarity provides:
 - **Input Validation** - Express-validator on all endpoints
 - **Secure Headers** - XSS and CSRF protection
 
-### 📊 Progress Tracking
+### Progress Tracking
 - **Micro-Wins Counter** - Celebrate every small achievement
 - **Day Streaks** - Maintain momentum with streak tracking
 - **Session Analytics** - Track completion rates and patterns
 - **Achievement System** - Unlock badges for milestones
 - **Energy Level Tracking** - Monitor daily energy patterns
 
-### 🎨 User Experience
+### User Experience
 - **Beautiful UI** - Modern, calming design with warm colors
 - **Smooth Animations** - Gentle transitions and feedback
 - **Toast Notifications** - Non-intrusive success/error messages
@@ -105,7 +78,7 @@ clarity provides:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
 - **Vanilla JavaScript** - No framework overhead, fast loading
@@ -137,7 +110,7 @@ clarity provides:
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -208,23 +181,5 @@ clarity provides:
 9. **Backend** returns response to frontend
 10. **Frontend** displays message with typing animation
 
----
-
-## 📋 Prerequisites
-
-### Required
-- **Node.js** 18 or higher ([Download](https://nodejs.org/))
-- **Python** 3.11 or higher ([Download](https://www.python.org/))
-- **MongoDB** 7.0 or higher ([Download](https://www.mongodb.com/try/download/community))
-- **Google Gemini API Key** ([Get Free Key](https://ai.google.dev/))
-
-### Optional
-- **Docker** & **Docker Compose** ([Download](https://docs.docker.com/get-docker/))
-- **Git** ([Download](https://git-scm.com/))
-
-### System Requirements
-- **RAM:** 4GB minimum, 8GB recommended
-- **Storage:** 500MB for application + 1GB for MongoDB
-- **OS:** Windows 10+, macOS 10.15+, Ubuntu 20.04+
 
 
